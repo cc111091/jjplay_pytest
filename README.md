@@ -60,6 +60,13 @@
     ```
     pip3 install Appium-Python-Client
     ```
+4. Install dependencies
+    > 💡 before installing dependencies, need update Xcode to the latest version.
+    ```
+    brew install libimobiledevice --HEAD
+    brew install carthage
+    ```
+    
 
     
 
@@ -68,3 +75,7 @@
     ```
     pip3 install requests
     ```
+
+
+## Reference
+- [Appium XCUITest on Real iOS Devices](https://medium.com/@yashwant-das/appium-xcuitest-on-real-ios-devices-bd1ebe0dea55)
