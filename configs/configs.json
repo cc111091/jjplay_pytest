@@ -1,0 +1,96 @@
+{
+    "emojiResult": true,
+    "loggerOpen": true,
+    "loggerSave": false,
+    "checkLogin": false,
+    "waitSeconds": 10,
+    "driverOptions": {
+        "headless": false,
+        "hide_automated": false,
+        "screenshot": false
+    },
+    "driverExec": "/usr/local/bin/chromedriver",
+    "remoteLambdaTest": {
+        "capabilities": {
+            "LT:Options": {
+                "user": "testerxen",
+                "accessKey": "yiFRytngLQqHEQqeHhkx5GjWXjwGQQ9F6QtBGJTtrVkGVpJVN8",
+                "build": "",
+                "name": "",
+                "platformName": "MacOS Big sur",
+                "selenium_version": "4.1.0",
+                "driver_version": "96.0",
+                "network": true,
+                "visual": true,
+                "terminal": "true",
+                "console": "true"
+            },
+            "browserName": "Chrome",
+            "browserVersion": "96.0",
+            "lambda:userFiles": []
+        }
+    },
+    "aws_ses": {
+        "from": "system@xencapital.com",
+        "to": [
+            "daily-monitor@xencapital.com"
+        ],
+        "subject": "Xen Tech Daily Monitoring"
+    },
+    "webURL": "https://{}.xencapital.com",
+    "logConfig": "loggingConfig.ini",
+    "parameterFile": "parameter.json",
+    "screenshotDir": "screenshot",
+    "clientId": "statusok",
+    "users": {
+        "statusok": {
+            "fm": {
+                "email": "xentest+fm@xen.io",
+                "password": "XenPortal@2022"
+            },
+            "admin": {
+                "email": "xentest+admin01@xen.io",
+                "password": "XenPortal@2022"
+            },
+            "rm": {
+                "email": "xentest+rm01@xen.io",
+                "password": "XenPortal@2022"
+            },
+            "client": {
+                "email": "xentest+client01@xen.io",
+                "password": "XenPortal@2022"
+            }
+        }
+    },
+    "docusignTemplateIds": {
+        "Individual": "9d00463a-e04d-43ca-a8d9-13b57fa62ea2",
+        "Entity": "06815990-e7d5-42fb-941d-8f4506e0b7d5"
+    },
+    "defaultProduct": {
+        "productType": "fund",
+        "general": {
+            "Currency": "USD",
+            "MinimumInvestment": 100,
+            "MinimumIncrement": 1
+        },
+        "fund": {
+            "AssetClass": "Hedge Funds",
+            "FundSize": 1000,
+            "Focus": "Caribbean",
+            "Symbol": ">",
+            "ExpectedReturn": 10,
+            "MinHoldingPeriod": 12
+        },
+        "company": {
+            "AssetClass": "Direct Investment",
+            "Valuation": 1000,
+            "FundingRound": "Pre-seed",
+            "Industries": [
+                "Apps",
+                "IT Security"
+            ],
+            "Headquarters": "China"
+        }
+    },
+    "defaultSignatureType": "online"
+}
