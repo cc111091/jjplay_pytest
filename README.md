@@ -67,7 +67,11 @@
     brew install carthage
     ```
     
-
+#### #Webdriver Manager
+1. Install
+    ```
+    pip3 install webdriver-manager
+    ```
     
 
 #### #requests
