@@ -23,8 +23,14 @@
     "loggerSave": false,
     "checkLogin": false,
     "waitSeconds": 10,
-    "driverExec": "/usr/local/bin/chromedriver",
     "webURL": "http://qah5.jjplaygo.com/",
+    "pwd_format":{
+        "length": 10,
+        "special_chars": 0,
+        "digits": 1,
+        "upper_case": 1,
+        "lower_case": 1
+    },
     "parameterFile": "parameter.json",
     "screenshotDir": "screenshot"
 }

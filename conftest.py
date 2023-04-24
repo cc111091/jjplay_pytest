@@ -2,6 +2,7 @@ import pytest, os, time
 import modules.common as common
 import modules.funcs as funcs
 import modules.sendEmailWithAttachment as sendEmailWithAttachment
+from faker import Faker
 #===============================================
 #===============================================
 @pytest.fixture
@@ -92,6 +93,11 @@ def setup(request):
         
 
     request.addfinalizer(fin)
+
+
+# @pytest.fixture(scope='session', autouse=True)
+# def faker_session_locale():
+#     return ['zh_CN']
 
 def pytest_bdd_before_scenario(request, feature, scenario):
 

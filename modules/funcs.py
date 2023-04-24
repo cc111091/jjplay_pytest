@@ -162,11 +162,12 @@ class XpathElementOperation:
             childs = parentElement.find_elements(By.TAG_NAME,tagName)
             return [child.text for child in childs]
 
-    def getTable(driver, table_xpath):
+    def getTable(driver, table_xpath, splitSymbol=' '):
         time.sleep(3)
         table = WebOperation.xpathElement(driver, table_xpath)
         rows = table.find_elements(By.TAG_NAME, 'tr')
-        headers = rows[0].text.split('\n')
+        headers = rows[0].text.split(splitSymbol)
+        print(headers)
         data = []
         for rowNum, row in enumerate(rows):
             if rowNum != 0:
@@ -252,6 +253,33 @@ class CheckCondition:
                 result = 0
 
         return result, rowNum, checks
+
+
+class MsgFormat:
+    def testStep(msg):
+        return print(f'{msg}')
+
+    def dangerResult(msg, newTag=None):
+        if newTag:
+            newTag = str(newTag)
+            return f'\033[0;30;41m{newTag.center(8)}\033[0m {msg}'
+        else:
+            return f'\033[0;30;41m{"Error".center(8)}\033[0m {msg}'
+
+    def successResult(msg, newTag=None):
+        if newTag:
+            newTag = str(newTag)
+            return f'\033[0;30;42m{newTag.center(8)}\033[0m {msg}'
+        else:
+            return f'\033[0;30;42m{"OK".center(8)}\033[0m {msg}'
+
+    def warningResult(msg, newTag=None):
+        if newTag:
+            newTag = str(newTag)
+            return f'\033[0;30;43m{newTag.center(8)}\033[0m {msg}'
+        else:
+            return f'\033[0;30;43m{"Notic".center(8)}\033[0m {msg}'
+
 
 class LogController:
     

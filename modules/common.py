@@ -1,4 +1,5 @@
 import os, json, time, shutil, subprocess
+from faker import Faker
 #===============================================
 rootPath = os.path.dirname(os.path.realpath(__file__)).replace('/modules', '')
 configsFile = os.path.join(rootPath,'configs/configs.json')
@@ -44,6 +45,23 @@ def updateConfig(configFile, newConfig):
 
     return config
 
+def getValidationCode(phone, start_yyyy, start_mm, start_dd, end_yyyy, end_mm, end_dd, user='river01',pwd='123qwe'):
+    pass
 
 configs = FileOperation.readJsonFile(configsFile)
 dateStr = time.strftime('%Y%m%d%H%M%S')
+
+class TestUser():
+    def generate(self,pwdLen=11, useChars=False):
+        self.faker = Faker(locale='zh_CN')
+        
+        self.user = {
+            'fullname': self.faker.name(),
+            'username':self.faker.simple_profile()['username'],
+            'phone': self.faker.phone_number(),
+            'pwd': self.faker.password(special_chars=useChars, length=pwdLen)
+        }
+
+        return self.user
+
+testuser = TestUser().generate()
