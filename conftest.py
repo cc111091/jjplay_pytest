@@ -1,17 +1,8 @@
 import pytest, os, time
-from selenium.webdriver.chrome.service import Service
-from selenium import webdriver
+import modules.common as common
 import modules.funcs as funcs
-# import module.basic as basic
-# from module.basic import users, mode, config, dateStr, fileFolder, waitSeconds, send_plain_email
-# import module.featureFunc as featureFunc
+import modules.sendEmailWithAttachment as sendEmailWithAttachment
 #===============================================
-rootPath = os.path.dirname(os.path.realpath(__file__))
-configsFile = os.path.join(rootPath,'configs/configs.json')
-# if mode in 'remote':
-#     # remote webdriver (lambdaTest)
-#     from module.basic import username, accessKey
-#     assert username and accessKey, 'Please check username and accessKey value'
 #===============================================
 @pytest.fixture
 def context():
@@ -23,8 +14,8 @@ def context():
 @pytest.fixture(autouse=True, scope='session')
 def setup(request):
     # --- before_all ---
-    context.configs = funcs.FileOperation.readJsonFile(configsFile)
-    context.waitSeconds = context.configs['waitSecond']
+    context.configs = common.configs
+    context.waitSeconds = context.configs['waitSeconds']
     context.varDic = {}
     context.results = {}
     context.failed = False
@@ -72,7 +63,7 @@ def setup(request):
                                     elif 'failed' in result.lower():
                                         result = '❌'
                                     else:
-                                        result = ' '*8
+                                        result = ' '*5
                                     resultText += f'    [{result.center(5)}] step{i}, {stepName}\n'
                                 else:
                                     # print(f'    [{result.center(8)}] step{i}, {stepName}')
@@ -81,34 +72,36 @@ def setup(request):
                                 i += 1
 
                 if not context.failed:
-                    # emailSubject = f'{sesConfig["subject"]} [{mode}] - All Passed'
-                    emailContent = resultText
+                    emailSubject = f'{context.configs["osName"]} [{context.configs["browserName"]}] - All Passed'
                 else:
-                    # emailSubject = f'{sesConfig["subject"]} [{mode}] - {context.count["Failed"]}/{context.count["Passed"]+context.count["Failed"]} Failed'
-                    emailContent = resultText
+                    emailSubject = f'{context.configs["osName"]} [{context.configs["browserName"]}] - {context.count["Failed"]}/{context.count["Passed"]+context.count["Failed"]} Failed'
+                emailContent = resultText
             else:
                 # emailSubject = f'{sesConfig["subject"]} [{mode}] - Error'
                 emailContent = 'Something Bad Happened.'
             
             # send_plain_email(ses, sesConfig['from'], sesConfig['to'], emailContent, emailSubject)
             # send_plain_email(ses, sesConfig['from'], ['ivy@xencapital.com'], emailContent, emailSubject)
+            if context.configs['sendEmail']:
+                common.configs['emailSubject'] = emailSubject
+                common.FileOperation.modifyJsonFile(common.configsFile, common.configs)
+            
 
         finally:
             time.sleep(context.waitSeconds)
+        
 
     request.addfinalizer(fin)
 
 def pytest_bdd_before_scenario(request, feature, scenario):
 
     # local webdriver
-    options = funcs.DriverOperations.web_chroneDriver(context.configs['driverOptions'])
-    driver = webdriver.Chrome(
-        service=Service(context.configs['driverExec']), 
-        options=options
-    )
-
-    driver.implicitly_wait(context.waitSeconds)
-    driver.maximize_window()
+    if context.configs['osName'] in ['macos', 'windows']:
+        driver = funcs.DriverOperations.pc_webDriver()
+        driver.implicitly_wait(context.waitSeconds)
+        driver.maximize_window()
+    else:
+        driver = funcs.DriverOperations.mobile_webDriver()
 
     context.driver = driver
     context.scenarioFailed = False
