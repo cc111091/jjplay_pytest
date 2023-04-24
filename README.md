@@ -25,19 +25,19 @@
     rm get-pip.py
     ```
 
-#### #pytest and plugins (pytest-bdd, pytest-html)
+#### #pytest and plugins (pytest-bdd, pytest-html, pytest-faker)
 > 💡 pyteset-bdd (almost same as Behave)
 > - Github: https://github.com/pytest-dev/pytest-bdd
 
 1. Install
     ```shell=bash
-    pip3 install pytest pytest-bdd pytest-html
+    pip3 install pytest pytest-bdd pytest-html pytest-faker
     ```
 2. Validation (💡 Ignore the error during collection)
     ```
     >>> pytest -v --no-summary
     ...
-    metadata: {..., 'Plugins': {..., 'bdd': '5.0.0', 'html': '3.1.1'}}
+    metadata: {..., 'Plugins': {..., html-3.2.0, Faker-18.4.0, faker-2.0.0, bdd-6.1.1}}
     ...
     ```
 
