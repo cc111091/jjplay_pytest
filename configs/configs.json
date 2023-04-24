@@ -1,0 +1,30 @@
+{
+    "osName": "macos",
+    "browserName": "chrome",
+    "pc_driverOptions": {
+        "chrome": {
+            "headless": true,
+            "hide_automated": false,
+            "screenshot": false
+        },
+        "edge": {},
+        "firefix": {},
+        "safari": {}
+    },
+    "mobile_driverOptioins": {
+        "chrome": {},
+        "firefix": {},
+        "safari": {}
+    },
+    "sendEmail": true,
+    "emailSubject": "macos [chrome] - 2/4 Failed",
+    "emojiResult": true,
+    "loggerOpen": true,
+    "loggerSave": false,
+    "checkLogin": false,
+    "waitSeconds": 10,
+    "driverExec": "/usr/local/bin/chromedriver",
+    "webURL": "http://qah5.jjplaygo.com/",
+    "parameterFile": "parameter.json",
+    "screenshotDir": "screenshot"
+}
