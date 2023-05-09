@@ -2,6 +2,7 @@ import pytest, os, time
 import modules.common as common
 import modules.funcs as funcs
 import modules.sendEmailWithAttachment as sendEmailWithAttachment
+from faker import Faker
 #===============================================
 #===============================================
 @pytest.fixture
@@ -10,6 +11,20 @@ def context():
     class Context(object):
         pass
     return Context()
+
+@pytest.fixture
+def browser():
+    if context.configs['osName'] in ['macos', 'windows']:
+        driver = funcs.DriverOperations.pc_webDriver()
+        driver.implicitly_wait(context.waitSeconds)
+        driver.maximize_window()
+    else:
+        driver = funcs.DriverOperations.mobile_webDriver()
+
+    yield driver
+
+    driver.quit()
+    time.sleep(3)
 
 @pytest.fixture(autouse=True, scope='session')
 def setup(request):
@@ -72,9 +87,9 @@ def setup(request):
                                 i += 1
 
                 if not context.failed:
-                    emailSubject = f'{context.configs["osName"]} [{context.configs["browserName"]}] - All Passed'
+                    emailSubject = f'{context.configs["osName"]} [{context.configs["browserName"]}] - All Passed✅'
                 else:
-                    emailSubject = f'{context.configs["osName"]} [{context.configs["browserName"]}] - {context.count["Failed"]}/{context.count["Passed"]+context.count["Failed"]} Failed'
+                    emailSubject = f'{context.configs["osName"]} [{context.configs["browserName"]}] - {context.count["Failed"]}/{context.count["Passed"]+context.count["Failed"]} Failed❌'
                 emailContent = resultText
             else:
                 # emailSubject = f'{sesConfig["subject"]} [{mode}] - Error'
@@ -93,17 +108,26 @@ def setup(request):
 
     request.addfinalizer(fin)
 
+
+# @pytest.fixture(scope='session', autouse=True)
+# def faker_session_locale():
+#     return ['zh_CN']
+
+
 def pytest_bdd_before_scenario(request, feature, scenario):
 
     # local webdriver
-    if context.configs['osName'] in ['macos', 'windows']:
-        driver = funcs.DriverOperations.pc_webDriver()
-        driver.implicitly_wait(context.waitSeconds)
-        driver.maximize_window()
-    else:
-        driver = funcs.DriverOperations.mobile_webDriver()
+    # if context.configs['osName'] in ['macos', 'windows']:
+    #     driver = funcs.DriverOperations.pc_webDriver()
+    #     driver.implicitly_wait(context.waitSeconds)
+    #     driver.maximize_window()
+    # else:
+    #     driver = funcs.DriverOperations.mobile_webDriver()
 
-    context.driver = driver
+    # print('before driver')
+    # context.driver = driver
+    # print('after driver')
+    # print(context.driver)
     context.scenarioFailed = False
     context.varDic['tmpScenario'] = {scenario.name:{step.name:'' for step in scenario.steps}}
 
@@ -127,5 +151,4 @@ def pytest_bdd_after_scenario(request, feature, scenario):
         context.count['Passed'] += 1
     
     time.sleep(3)
-    context.driver.quit()
-    time.sleep(3)
+    
