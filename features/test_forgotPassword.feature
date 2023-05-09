@@ -1,4 +1,4 @@
-Feature: Register
+Feature: Forgot Password
 
     Scenario: Test return passed
         Then return passed

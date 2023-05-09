@@ -68,11 +68,23 @@ class WebOperation:
         except:
             return WebOperation.findXpathElement(driver, xpath)
 
+    def elementObj(driver, element): #element: (By.XPATH, xpath); (By.ID, id)
+        try:
+            return WebDriverWait(driver, common.configs['waitSeconds']).until(EC.presence_of_element_located(element))
+        except:
+            return WebOperation.findElement(driver, element)
+
     def findXpathElement(driver, xpath):
         try:
             return driver.find_element(By.XPATH, xpath)
         except:
             assert False, f'Element Not Found: xpath({xpath})'
+    
+    def findElement(driver, element): #element: (By.XPATH)
+        try:
+            return driver.find_element(element)
+        except:
+            assert False, f'Element Not Found: {element}'
     
     def xpathElements(driver, xpath):
         try:

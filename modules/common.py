@@ -3,6 +3,7 @@ from faker import Faker
 #===============================================
 rootPath = os.path.dirname(os.path.realpath(__file__)).replace('/modules', '')
 configsFile = os.path.join(rootPath,'configs/configs.json')
+dateStr = time.strftime('%Y%m%d%H%M%S')
 #===============================================
 class FileOperation:
     def checkDir(path):
@@ -45,12 +46,6 @@ def updateConfig(configFile, newConfig):
 
     return config
 
-def getValidationCode(phone, start_yyyy, start_mm, start_dd, end_yyyy, end_mm, end_dd, user='river01',pwd='123qwe'):
-    pass
-
-configs = FileOperation.readJsonFile(configsFile)
-dateStr = time.strftime('%Y%m%d%H%M%S')
-
 class TestUser():
     def generate(self,pwdLen=11, useChars=False):
         self.faker = Faker(locale='zh_CN')
@@ -64,4 +59,6 @@ class TestUser():
 
         return self.user
 
+
+configs = FileOperation.readJsonFile(configsFile)
 testuser = TestUser().generate()

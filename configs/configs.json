@@ -17,18 +17,23 @@
         "safari": {}
     },
     "sendEmail": true,
-    "emailSubject": "macos [chrome] - 2/4 Failed",
+    "emailSubject": "",
     "emojiResult": true,
     "loggerOpen": true,
     "loggerSave": false,
     "checkLogin": false,
     "waitSeconds": 10,
     "webURL": "http://qah5.jjplaygo.com/",
-    "pwd_format":{
-        "length": 10,
+    "user_format": {
+        "length_min": 6,
+        "length_max": 14
+    },
+    "pwd_format": {
+        "length_min": 6,
+        "length_max": 12,
         "special_chars": 0,
         "digits": 1,
-        "upper_case": 1,
+        "upper_case": 0,
         "lower_case": 1
     },
     "parameterFile": "parameter.json",

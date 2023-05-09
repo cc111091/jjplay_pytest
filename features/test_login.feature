@@ -1,4 +1,4 @@
-Feature: Register
+Feature: Login
 
     Scenario: Test return passed
         Then return passed
