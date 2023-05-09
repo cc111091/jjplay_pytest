@@ -7,9 +7,12 @@
 - pytest-bdd `6.1.1` (for `Gherkin` syntax) 
 - pytest-html `3.2.0` (for generate .html report file)
 - requests `2.28.2`
+- webdriver-manager `3.8.6`
 - selenium `4.8.3`
+- selenium-page-factory `2.6`
 - appium server `1.22.3`
 - appium python client  `2.9.0`
+- faker `18.4.0`
 
 ### More Details
 #### #pip
@@ -68,7 +71,9 @@
     ```
     
 #### #Webdriver Manager
-1. Install
+> https://pypi.org/project/webdriver-manager/
+
+- Install
     ```
     pip3 install webdriver-manager
     ```
@@ -78,6 +83,22 @@
 - Install
     ```
     pip3 install requests
+    ```
+
+#### #selenium-page-factory
+> Doc: https://selenium-page-factory.readthedocs.io/en/latest/#python-pytest
+
+- Install
+    ```
+    pip3 install selenium-page-factory
+    ```
+
+#### faker
+> Doc: https://faker.readthedocs.io/en/master/
+
+- Install
+    ```
+    pip3 install faker
     ```
 
 
