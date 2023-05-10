@@ -46,9 +46,12 @@ def step_impl(browser):
     browser.get(f'{webURL}/fogot-password')
     time.sleep(10)
 
-@given(parsers.parse('Navigate to "{url}"'))
-def step_impl(browser, url):
-    browser.get(url)
+@given(parsers.parse('Navigate to "{websiteName}"\'s "{pageName}" page'))
+def step_impl(browser, websiteName, pageName):
+    if 'jj' in websiteName.lower():
+        browser.get(BasePage.jj_urls[pageName.lower()])
+    elif 'cms' in websiteName.lower():
+        browser.get(BasePage.cms_urls[pageName.lower()])
 
 @given(parsers.parse('Login as "{user}" / "{password}"'))
 def step_impl(browser, user, password):
@@ -56,7 +59,7 @@ def step_impl(browser, user, password):
 
 @then(parsers.parse('Search and get "{phone}"\'s newest validation code today'))
 def step_impl(browser, phone):
-    CMSPage(browser).enter_phone_into_field(phone)
+    CMSPage(browser).enter_phone_number(phone)
     CMSPage(browser).submit_searchInfo()
     time.sleep(3)
     codes = CMSPage(browser).get_codes(phone)

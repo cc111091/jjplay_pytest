@@ -23,6 +23,7 @@ def browser():
 
     yield driver
 
+    time.sleep(3)
     driver.quit()
     time.sleep(3)
 
@@ -115,19 +116,6 @@ def setup(request):
 
 
 def pytest_bdd_before_scenario(request, feature, scenario):
-
-    # local webdriver
-    # if context.configs['osName'] in ['macos', 'windows']:
-    #     driver = funcs.DriverOperations.pc_webDriver()
-    #     driver.implicitly_wait(context.waitSeconds)
-    #     driver.maximize_window()
-    # else:
-    #     driver = funcs.DriverOperations.mobile_webDriver()
-
-    # print('before driver')
-    # context.driver = driver
-    # print('after driver')
-    # print(context.driver)
     context.scenarioFailed = False
     context.varDic['tmpScenario'] = {scenario.name:{step.name:'' for step in scenario.steps}}
 

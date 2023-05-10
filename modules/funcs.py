@@ -179,7 +179,6 @@ class XpathElementOperation:
         table = WebOperation.xpathElement(driver, table_xpath)
         rows = table.find_elements(By.TAG_NAME, 'tr')
         headers = rows[0].text.split(splitSymbol)
-        print(headers)
         data = []
         for rowNum, row in enumerate(rows):
             if rowNum != 0:

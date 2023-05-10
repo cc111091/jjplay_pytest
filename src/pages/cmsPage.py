@@ -26,7 +26,7 @@ class CMSPage(PageFactory):
 
         time.sleep(3)
 
-    def enter_phone_into_field(self, phone):
+    def enter_phone_number(self, phone):
         self.phone_input.set_text(phone)
 
     def submit_searchInfo(self):
