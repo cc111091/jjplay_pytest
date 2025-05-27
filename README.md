@@ -93,7 +93,7 @@
     pip3 install selenium-page-factory
     ```
 
-#### faker
+#### #faker
 > Doc: https://faker.readthedocs.io/en/master/
 
 - Install
