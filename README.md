@@ -7,9 +7,12 @@
 - pytest-bdd `6.1.1` (for `Gherkin` syntax) 
 - pytest-html `3.2.0` (for generate .html report file)
 - requests `2.28.2`
+- webdriver-manager `3.8.6`
 - selenium `4.8.3`
+- selenium-page-factory `2.6`
 - appium server `1.22.3`
 - appium python client  `2.9.0`
+- faker `18.4.0`
 
 ### More Details
 #### #pip
@@ -25,19 +28,19 @@
     rm get-pip.py
     ```
 
-#### #pytest and plugins (pytest-bdd, pytest-html)
+#### #pytest and plugins (pytest-bdd, pytest-html, pytest-faker)
 > 💡 pyteset-bdd (almost same as Behave)
 > - Github: https://github.com/pytest-dev/pytest-bdd
 
 1. Install
     ```shell=bash
-    pip3 install pytest pytest-bdd pytest-html
+    pip3 install pytest pytest-bdd pytest-html pytest-faker
     ```
 2. Validation (💡 Ignore the error during collection)
     ```
     >>> pytest -v --no-summary
     ...
-    metadata: {..., 'Plugins': {..., 'bdd': '5.0.0', 'html': '3.1.1'}}
+    metadata: {..., 'Plugins': {..., html-3.2.0, Faker-18.4.0, faker-2.0.0, bdd-6.1.1}}
     ...
     ```
 
@@ -60,7 +63,20 @@
     ```
     pip3 install Appium-Python-Client
     ```
+4. Install dependencies
+    > 💡 before installing dependencies, need update Xcode to the latest version.
+    ```
+    brew install libimobiledevice --HEAD
+    brew install carthage
+    ```
+    
+#### #Webdriver Manager
+> https://pypi.org/project/webdriver-manager/
 
+- Install
+    ```
+    pip3 install webdriver-manager
+    ```
     
 
 #### #requests
@@ -68,3 +84,23 @@
     ```
     pip3 install requests
     ```
+
+#### #selenium-page-factory
+> Doc: https://selenium-page-factory.readthedocs.io/en/latest/#python-pytest
+
+- Install
+    ```
+    pip3 install selenium-page-factory
+    ```
+
+#### #faker
+> Doc: https://faker.readthedocs.io/en/master/
+
+- Install
+    ```
+    pip3 install faker
+    ```
+
+
+## Reference
+- [Appium XCUITest on Real iOS Devices](https://medium.com/@yashwant-das/appium-xcuitest-on-real-ios-devices-bd1ebe0dea55)
