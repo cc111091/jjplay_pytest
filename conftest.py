@@ -27,6 +27,48 @@ def browser():
     driver.quit()
     time.sleep(3)
 
+@pytest.fixture
+def urls():
+    class URLs():
+        jj_baseURL = 'http://qah5.jjplaygo.com'
+        jj_home = jj_baseURL
+        jj_register = f'{jj_baseURL}/register'
+        jj_login = f'{jj_baseURL}/login'
+        jj_forgotPassword = f'{jj_baseURL}/forgot-password'
+        jj_wallet = f'{jj_baseURL}/wallet'
+        jj_withdraw = f'{jj_baseURL}/withdraw'
+        jj_deposit = f'{jj_baseURL}/deposit'
+        jj_history = f'{jj_baseURL}/history'
+        jj_profile = f'{jj_baseURL}/profile'
+        jj_nickname = f'{jj_baseURL}/nickname'
+        jj_fullname = f'{jj_baseURL}/fullname'
+        jj_phone = f'{jj_baseURL}/phone'
+        jj_password = f'{jj_baseURL}/password'
+        jj_language = f'{jj_baseURL}/language'
+        jj_tasks = f'{jj_baseURL}/tasks'
+        jj_promo = f'{jj_baseURL}/promo'
+        jj_notifications = f'{jj_baseURL}/notifications'
+        jj_games = f'{jj_baseURL}/games'
+        jj_referral = f'{jj_baseURL}/referral'
+        jj_share = f'{jj_baseURL}/share'
+        jj_agent = f'{jj_baseURL}/agent'
+        jj_about = f'{jj_baseURL}/about'
+        jj_help = f'{jj_baseURL}/help'
+
+        cms_baseURL = 'http://20.24.16.242:8002'
+        cms_home = cms_baseURL
+        cms_customers = f'{cms_baseURL}/customers/search'
+        cms_mobileverificationcode = f'{cms_baseURL}/mobileverificationcode/search'
+        cms_urls = {
+            'home': cms_home,
+            'customers': cms_customers,
+            'mobileverificationcode': cms_mobileverificationcode
+        }
+
+        
+    return URLs
+
+
 @pytest.fixture(autouse=True, scope='session')
 def setup(request):
     # --- before_all ---
@@ -108,11 +150,6 @@ def setup(request):
         
 
     request.addfinalizer(fin)
-
-
-# @pytest.fixture(scope='session', autouse=True)
-# def faker_session_locale():
-#     return ['zh_CN']
 
 
 def pytest_bdd_before_scenario(request, feature, scenario):

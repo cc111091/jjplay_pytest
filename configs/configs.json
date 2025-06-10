@@ -11,6 +11,14 @@
         "firefix": {},
         "safari": {}
     },
+    "iosDeviceInfo": {
+
+    },
+    "androidDeviceInfo": {
+        "platformName": "",
+        "platformVersion": "",
+        "udid": ""
+    },
     "mobile_driverOptioins": {
         "chrome": {},
         "firefix": {},

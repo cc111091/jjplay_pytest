@@ -47,11 +47,11 @@ def step_impl(browser):
     time.sleep(10)
 
 @given(parsers.parse('Navigate to "{websiteName}"\'s "{pageName}" page'))
-def step_impl(browser, websiteName, pageName):
+def step_impl(browser, urls, websiteName, pageName):
     if 'jj' in websiteName.lower():
-        browser.get(BasePage.jj_urls[pageName.lower()])
+        browser.get(f'{urls.jj_baseURL}/{pageName.lower()}')
     elif 'cms' in websiteName.lower():
-        browser.get(BasePage.cms_urls[pageName.lower()])
+        browser.get(urls.cms_urls[pageName.lower().replace(" ", "")])
 
 @given(parsers.parse('Login as "{user}" / "{password}"'))
 def step_impl(browser, user, password):

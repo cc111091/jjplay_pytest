@@ -13,7 +13,7 @@ class RegisterPage(PageFactory):
         'username_input': ('ID', '帐号'),
         'password_input': ('ID', '密码'),
         'confirmPassword_input': ('ID', '确认密码'),
-        'refferalBy_input': ('ID', '推荐码(选填)'),
+        'referralBy_input': ('ID', '推荐码(选填)'),
         'register_btn': ('XPATH', '//button[.="注 册"]'),
     }
 
@@ -44,8 +44,8 @@ class RegisterPage(PageFactory):
     def enter_confirm_password(self, confirmPassword):
         self.confirmPassword_input.set_text(confirmPassword)
     
-    def enter_refferal_by(self, refferralBy):
-        self.refferalBy_input.set_text(refferralBy)
+    def enter_referral_by(self, refferralBy):
+        self.referralBy_input.set_text(refferralBy)
 
     def submit_registerInfo(self):
         self.register_btn.click_button()

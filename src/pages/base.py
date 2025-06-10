@@ -36,6 +36,7 @@ class BasePage():
 
     cms_baseURL = 'http://20.24.16.242:8002'
     cms_urls = {
+        'home': cms_baseURL,
         'customers': f'{cms_baseURL}/customers/search',
         'mobileverificationcode': f'{cms_baseURL}/mobileverificationcode/search'
     }
